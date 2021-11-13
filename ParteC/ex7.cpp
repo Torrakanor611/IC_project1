@@ -11,9 +11,10 @@ int main(int argc, char **argv){
         puts("Usage: ./histimagefile input_file");
 		exit (1);
     }
-    Mat image = imread(argv[1], IMREAD_COLOR);
 
+    Mat image = imread(argv[1], IMREAD_COLOR);
     vector<Mat> bgr_planes;
+
     split(image, bgr_planes);
     int histSize = 256;
     float range[] = { 0, 256 } ; //the upper boundary is exclusive
@@ -30,6 +31,7 @@ int main(int argc, char **argv){
     normalize(b_hist, b_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
     normalize(g_hist, g_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
     normalize(r_hist, r_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
+    
     for( int i = 1; i < histSize; i++ ){
         line( histImage, Point( bin_w*(i-1), hist_h - cvRound(b_hist.at<float>(i-1)) ) ,
                         Point( bin_w*(i), hist_h - cvRound(b_hist.at<float>(i)) ),
@@ -55,7 +57,16 @@ int main(int argc, char **argv){
                         Scalar( 255, 255, 255), 2, 8, 0);
     }
     imshow("Histogram grey scale", histImage_grey);
-    waitKey(0);
-
+    
+    // stop display
+    puts("press q to stop display...");
+    int key = waitKey(0);
+    while(true){
+        if(key == 'q'){
+                puts("stoped!");
+                break;
+            }
+    }
+    destroyAllWindows();
     return 0;
 }
