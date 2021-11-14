@@ -52,6 +52,7 @@ int main(int argc, char **argv){
         entropy = prob[i] * -log2(prob[i]);
     }
     printf("entropy (combined rgb channels): %f bits\n", entropy);
+    printf("redundancy: %f bits\n", (image.depth() == 0 ? 8 : 16) - entropy);
     
     // stop display
     puts("press q or ESC to stop display...");
