@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include <opencv2/opencv.hpp>
 
@@ -20,14 +21,21 @@ int main(int argc, char **argv){
     RGB(&image);
     Mat image_gray = imread(argv[1], IMREAD_GRAYSCALE);
     GRAY(&image_gray);
+
+    vector<int> roccur;
+    vector<int> goccur;
+    vector<int> boccur;
     
     int r, g, b;
     for(int y = 0; y < image.rows; y++){
         for(int x = 0; x < image.cols; x++){
             cv::Vec3d bgr = image.at<cv::Vec3b>(y,x);
-            b = bgr[0];
+            boccur[bgr[0]]++;
+            goccur[bgr[1]]++;
+            roccur[bgr[2]]++;
         }
     }
+    
     
     // stop display
     puts("press q or ESC to stop display...");
