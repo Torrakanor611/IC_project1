@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
 
     SNDFILE *infile;
     SF_INFO sfinfo;
-    int k, readcount;
+    int readcount;
     vector<short> chs;
     short ch[2];
 
@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
 
     map<short, int> map_aud;
 
-    for(int i = 0; i < chs.size(); i++) {
+    for(int i = 0; i < (int) chs.size(); i++) {
         map_aud[chs[i]]++;
     }
 
