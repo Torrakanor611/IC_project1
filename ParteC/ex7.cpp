@@ -1,4 +1,7 @@
 #include <iostream>
+#include <map>
+#include <vector>
+#include <cmath>
 
 #include <opencv2/opencv.hpp>
 
@@ -20,17 +23,44 @@ int main(int argc, char **argv){
     RGB(&image);
     Mat image_gray = imread(argv[1], IMREAD_GRAYSCALE);
     GRAY(&image_gray);
-    
-    int r, g, b;
+
+    Mat bgr[3];
+    split(image, bgr);
+    uchar r, g, b;
+    map<uchar, int> boccur;
+    map<uchar, int> goccur;
+    map<uchar, int> roccur;
     for(int y = 0; y < image.rows; y++){
         for(int x = 0; x < image.cols; x++){
+<<<<<<< HEAD
             cv::Vec3d bgr = image.at<cv::Vec3b>(y,x);
             b = bgr[0];
             g = bgr[1];
             r = bgr[2];
             
+=======
+            b = image.at<Vec3b>(y, x)[0];
+            g = image.at<Vec3b>(y, x)[1];
+            r = image.at<Vec3b>(y, x)[2];
+            boccur[b]++;
+            goccur[g]++;
+            roccur[r]++;
+>>>>>>> c8745d34c2b34f600e83cb545b41c5e79aa48ec5
         }
     }
+    vector<double> prob;
+    int total = (image.rows * image.cols) * image.channels();
+    // printf("total: %d", total);
+    double entropy = 0, aux;
+    for (int i = 0; i < 255; i++){
+        aux = boccur[i] + goccur[i] + roccur[i];
+        // printf("aux: %f", aux);
+        prob.push_back( aux / (double) total);
+        // printf("<--->prob: %f\n", prob[i]);
+        entropy = prob[i] * -log2(prob[i]);
+    }
+    printf("entropy (combined rgb channels): %f bits\n", entropy);
+    printf("redundancy: %f bits\n", (image.depth() == 0 ? 8 : 16) - entropy);
     
     // stop display
     puts("press q or ESC to stop display...");
