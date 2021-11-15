@@ -26,6 +26,7 @@ int main(int argc, char* argv[])
     vector<int> nums;
     int cnt = 0;
 
+
     //Load audiofile
     af.load(inputfile);
 
@@ -39,7 +40,7 @@ int main(int argc, char* argv[])
     //Get audiofile metainfo
     int numChannels = af.getNumChannels();
     int numSamples = af.getNumSamplesPerChannel();
-    int bitDeph = af.getBitDepth();
+    //int bitDeph = af.getBitDepth();
 
     int Amax = 1, Amin = -1;
     int nLevels = 8;
