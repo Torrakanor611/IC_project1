@@ -44,13 +44,14 @@ int main(int argc, char **argv){
     int total = (image.rows * image.cols) * image.channels();
     // printf("total: %d", total);
     double entropy = 0, aux;
+    double aux2 = 0;
     for (int i = 0; i < 255; i++){
         aux = boccur[i] + goccur[i] + roccur[i];
-        // printf("aux: %f", aux);
         prob.push_back( aux / (double) total);
-        // printf("<--->prob: %f\n", prob[i]);
-        entropy = prob[i] * -log2(prob[i]);
+        if (prob[i] != 0)
+            entropy += prob[i] * -log2(prob[i]);
     }
+    printf("%f", aux2);
     printf("entropy (combined rgb channels): %f bits\n", entropy);
     printf("redundancy: %f bits\n", (image.depth() == 0 ? 8 : 16) - entropy);
     
