@@ -26,6 +26,9 @@ int main(int argc, char **argv){
         for(int x = 0; x < image.cols; x++){
             cv::Vec3d bgr = image.at<cv::Vec3b>(y,x);
             b = bgr[0];
+            g = bgr[1];
+            r = bgr[2];
+            
         }
     }
     
