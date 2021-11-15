@@ -32,20 +32,12 @@ int main(int argc, char **argv){
     map<uchar, int> roccur;
     for(int y = 0; y < image.rows; y++){
         for(int x = 0; x < image.cols; x++){
-<<<<<<< HEAD
-            cv::Vec3d bgr = image.at<cv::Vec3b>(y,x);
-            b = bgr[0];
-            g = bgr[1];
-            r = bgr[2];
-            
-=======
             b = image.at<Vec3b>(y, x)[0];
             g = image.at<Vec3b>(y, x)[1];
             r = image.at<Vec3b>(y, x)[2];
             boccur[b]++;
             goccur[g]++;
             roccur[r]++;
->>>>>>> c8745d34c2b34f600e83cb545b41c5e79aa48ec5
         }
     }
     vector<double> prob;
