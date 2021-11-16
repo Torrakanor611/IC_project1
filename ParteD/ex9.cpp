@@ -44,8 +44,19 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    imwrite("out.ppm",outimg);
+    imwrite(argv[2], outimg);
 
     imshow("Original Image", inimg);
     imshow("Quantized Image", outimg);
+
+    // stop display
+    puts("press q or ESC to stop display...");
+    int key = waitKey(-1);
+    while(true){
+        if(key == 'q' || key == 27){
+                puts("stoped!");
+                break;
+            }
+    }
+    destroyAllWindows();
 }
