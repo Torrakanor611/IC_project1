@@ -39,7 +39,7 @@ ex5:
 
 ex6:
 	@ mkdir -p bin
-	@ $(CC) $(CFLAGS) ParteC/ex6.cpp -o bin/ex6 $(SNDFILE)
+	@ $(CC) $(CFLAGS) ParteC/ex6.cpp -o bin/ex6 $(SNDFILE) $(MATPLOTLIB)
 
 ex7:
 	@ mkdir -p bin
@@ -49,9 +49,17 @@ ex8:
 	@ mkdir -p bin
 	@ $(CC) $(CFLAGS) ParteD/ex8.cpp -o bin/ex8 $(MATPLOTLIB)
 
+ex9:
+	@ mkdir -p bin
+	@ $(CC) $(CFLAGS) ParteD/ex9.cpp -o bin/ex9 $(OPENCV4)
+
 ex10:
 	@ mkdir -p bin
 	@ $(CC) $(CFLAGS) ParteD/ex10.cpp -o bin/ex10
+
+ex11:
+	@ mkdir -p bin
+	@ $(CC) $(CFLAGS) ParteD/ex11.cpp -o bin/ex11 $(OPENCV4)
 
 clean:
 	rm -rf bin/ex2
