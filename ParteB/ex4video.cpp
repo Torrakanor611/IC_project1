@@ -13,7 +13,7 @@ int main(int argc, char **argv){
     }
     VideoCapture vid(argv[1]);
     if(!vid.isOpened()){
-		cout << "Error opening video file" << endl;
+		cout << "Error opening input video file: " << argv[1] << " " << endl;
 	}else{
         // get vid info
         int fps = vid.get(5);
@@ -22,18 +22,18 @@ int main(int argc, char **argv){
         Size frame_size(frame_width, frame_height);
         VideoWriter vid_out(argv[2], VideoWriter::fourcc('a','v','c','1'), fps, frame_size);
         
-        puts("press q to stop frame by frame display...");
+        puts("press q ou ESC to stop frame by frame display...");
         while(vid.isOpened()){
             Mat frame;
-            bool success = vid.read(frame);
+            bool success = vid.read(frame);     // ler frame by frame
             if (success){
                 imshow("frame by frame", frame);
                 vid_out.write(frame);   // escrever frame no objecto de destino
             }else{
                 break;
             }
-            int key = waitKey(30);      // each frame shows at 30ms
-            if(key == 'q'){
+            int key = waitKey(30);      // each frame is displayed every 30ms
+            if(key == 'q' || key == 27){
                 cout << "stoped!" << endl;
                 break;
             }
