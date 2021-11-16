@@ -2,10 +2,10 @@
 # Variables to control Makefile operation
  
 CC=g++
-CFLAGS=-Wall -g
+CFLAGS=-Wall -g -std=c++11
 SNDFILE=$$(pkg-config --libs sndfile)
 OPENCV4=$$(pkg-config --libs --cflags opencv4)
-MATPLOTLIB=-std=c++11 -I/usr/include/python3.8 -lpython3.8
+MATPLOTLIB=-I/usr/include/python3.8 -lpython3.8
 
 # ****************************************************
 # Targets needed to bring the executable up to date
