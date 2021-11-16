@@ -11,7 +11,11 @@ MATPLOTLIB=-std=c++11 -I/usr/include/python3.8 -lpython3.8
 # Targets needed to bring the executable up to date
 
 all:
-	@ make --no-print-directory ex3 ex3sndfile ex4 ex4video ex5 ex6 ex7 ex8 ex10
+	@ make --no-print-directory ex2 ex3 ex3sndfile ex4 ex4video ex5 ex6 ex7 ex8 ex10
+
+ex2:
+	@ mkdir -p bin
+	@ $(CC) $(CFLAGS) ParteB/ex2.cpp -o bin/ex2
 
 ex3:
 	@ mkdir -p bin
@@ -50,6 +54,7 @@ ex10:
 	@ $(CC) $(CFLAGS) ParteD/ex10.cpp -o bin/ex10
 
 clean:
+	rm -rf bin/ex2
 	rm -rf bin/ex3
 	rm -rf bin/ex3sndfile
 	rm -rf bin/ex4
