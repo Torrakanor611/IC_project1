@@ -4,8 +4,25 @@
 #include <vector>
 #include <map>
 #include <cmath>
+#include "matplotlibcpp.h"
 
 using namespace std;
+namespace plt = matplotlibcpp;
+
+
+void showHisto(map<short, int> ch, string title) {
+    vector<int> samples;
+    vector<int> occur;
+
+    for(auto i : ch) {
+        samples.push_back(i.first);
+        occur.push_back(i.second);
+    }
+    plt::bar(samples, occur);
+    plt::xlabel("Samples ");
+    plt::ylabel("Number of occurences");
+    plt::title(title);
+}
 
 int main(int argc, char **argv) {
     
@@ -14,6 +31,7 @@ int main(int argc, char **argv) {
         return -1;
     }
 
+    // Read data of an audio file
     SNDFILE *infile;
     SF_INFO sfinfo;
     int readcount;
@@ -32,6 +50,7 @@ int main(int argc, char **argv) {
 
 	sf_close (infile) ;
 
+    // Calculate the entropy
     map<short, int> map_aud;
 
     for(int i = 0; i < (int) chs.size(); i++) {
@@ -41,11 +60,34 @@ int main(int argc, char **argv) {
     double entropy = 0;
     double p;
     for(auto i : map_aud) {
-        cout << i.first << " -> " << i.second << endl;
         p = (double) i.second / (double) chs.size();
         entropy += p * (-log2(p));
     }
     cout << "\nEntropy: " << entropy << endl;
+
+    // Calculate the histogram of an audio sample
+    map<short, int> map_ch0;
+    map<short, int> map_ch1;
+    map<short, int> map_mono;
+
+    for(int i = 0; i < (int) chs.size()/2; i+=2) {
+        map_ch0[chs[i]]++;
+        map_ch1[chs[i+1]]++;
+        map_mono[(chs[i] + chs[i+1]) / 2]++;
+
+    }
+
+    //Draw the plot
+    plt::figure(1);
+    showHisto(map_ch0, "Channel 0");
+
+    plt::figure(2);
+    showHisto(map_ch1, "Channel 1");
+
+    plt::figure(3);
+    showHisto(map_mono, "Mono Version)");
+
+    plt::show();
     
     return 0;
 }
