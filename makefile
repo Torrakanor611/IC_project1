@@ -71,4 +71,6 @@ clean:
 	rm -rf bin/ex6
 	rm -rf bin/ex7
 	rm -rf bin/ex8
+	rm -rf bin/ex9
 	rm -rf bin/ex10
+	rm -rf bin/ex11
