@@ -54,9 +54,9 @@ int main(int argc, char* argv[])
             originalsamples.push_back(af.samples[j][i]);
 
             if(option == 0) //Mid-riser quantization
-                af.samples[j][i] = delta * floor((af.samples[j][i]/delta) + 0.5);
-            else            //Mid-tread quantization
                 af.samples[j][i] = delta * (floor((af.samples[j][i]/delta)) + 0.5);
+            else            //Mid-tread quantization
+                af.samples[j][i] = delta * floor((af.samples[j][i]/delta) + 0.5);
             
             samples.push_back(af.samples[j][i]);
             nums.push_back(cnt);

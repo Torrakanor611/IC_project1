@@ -37,9 +37,9 @@ int main(int argc, char* argv[]) {
         for (int x = 0; x < inimg.cols; x++) {
             for (int y = 0; y < inimg.rows; y++) {
                 if(option == 0) //Mid-riser quantization
-                    outimg.at<Vec3b>(y,x)[i] = delta * floor((inimg.at<Vec3b>(y, x)[i]/delta) + 0.5); 
+                    outimg.at<Vec3b>(y,x)[i] = delta * (floor((inimg.at<Vec3b>(y, x)[i]/delta)) + 0.5);
                 else            //Mid-tread quantization
-                    outimg.at<Vec3b>(y, x)[i] = delta * (floor((inimg.at<Vec3b>(y, x)[i]/delta)) + 0.5);
+                    outimg.at<Vec3b>(y, x)[i] = delta * floor((inimg.at<Vec3b>(y, x)[i]/delta) + 0.5); 
             }
         }
     }
