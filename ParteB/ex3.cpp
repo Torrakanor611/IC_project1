@@ -17,8 +17,12 @@ int main(int argc, char* argv[])
 
     //Audiofile Object
     AudioFile<double> af;
+    af.shouldLogErrorsToConsole(false);
     //Load audiofile
-    af.load (inputfile);
+    if(af.load (inputfile) == 0){
+        cout << "\033[1;31mERROR: File doesn't exist or otherwise can't load file\033[0m" << endl;
+        return 0; 
+    }
     //Get numSamples per Channel
     int numSamples = af.getNumSamplesPerChannel();
     //Get num Channels

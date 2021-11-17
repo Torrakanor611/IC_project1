@@ -17,10 +17,20 @@ int main(int argc, char* argv[])
     char *compressedfile = argv[2];
 
     AudioFile<double> originalaf;
+    originalaf.shouldLogErrorsToConsole(false);
+    //Load input audio file
+    if(originalaf.load(originalfile) == 0){
+        cout << "\033[1;31mERROR: File doesn't exist or otherwise can't load file\033[0m" << endl;
+        return 0; 
+    }
+
     AudioFile<double> compressedaf;
-    //Load audio files
-    originalaf.load(originalfile);
-    compressedaf.load(compressedfile);
+    compressedaf.shouldLogErrorsToConsole(false);
+    //Load input audio file
+    if(compressedaf.load(compressedfile) == 0){
+        cout << "\033[1;31mERROR: File doesn't exist or otherwise can't load file\033[0m" << endl;
+        return 0; 
+    }
 
     //Variables to calculate the maximum per sample absolute error
     double maxError = 0, tmpError;

@@ -20,15 +20,17 @@ int main(int argc, char* argv[])
     
     //AudioFile
     AudioFile<double> af;
+    af.shouldLogErrorsToConsole(false);
+    //Load audiofile
+    if(af.load (inputfile) == 0){
+        cout << "\033[1;31mERROR: File doesn't exist or otherwise can't load file\033[0m" << endl;
+        return 0; 
+    }
     //Vectors to plots
     vector<double> originalsamples;
     vector<double> samples;
     vector<int> nums;
     int cnt = 0;
-
-
-    //Load audiofile
-    af.load(inputfile);
 
     int option = -1;
     while(option != 0 && option != 1){
