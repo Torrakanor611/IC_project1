@@ -55,7 +55,7 @@ int main(int argc, char **argv){
         D[0] = D[i] + D[i+1];
     // SNR = sigPower / D[0]
     double SNR = 10 * log10(sigPower / D[0]);
-    double PSNR = 10 * log10(max - min / D[0]);
+    double PSNR = 10 * log10(pow(max - min, 2) / D[0]);
     printf("SNR = %f dB\n", SNR);
     printf("PSNR = %f db\n", PSNR);
     printf("max. absolute per pixel error = %d\n", mAbsError);
@@ -75,5 +75,3 @@ int main(int argc, char **argv){
     }
     destroyAllWindows();
 }
-
-// I understood that SNR is the ratio of signal power to noise power and can be used to measure the effect of noise added to images. Likewise, in PSNR, we take the square of the peak value in the image (in case of an 8 bit image, the peak value is 255) and divide it by the mean square error. Both SNR and PSNR are used to measure the quality of an image after the reconstruction and higher the value (SNR or PSNR) better is the reconstruction.
