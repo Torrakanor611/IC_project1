@@ -27,8 +27,11 @@ int main(int argc, char* argv[]) {
         cout << "Choose quantization option (0 for Mid-riser or 1 for Mid-tread): ";
         cin >> option;
     }
-
-    int Amax = 255, Amin = 0;
+    printf("depth: = %d", inimg.depth());
+    printf("depth == 0 = %d", inimg.depth() == 0);
+    int Amax = inimg.depth() == 0 ? pow(2, 8) : inimg.depth() == 2 ? pow(2, 16) : pow(2, 32);
+    printf("Amax = %d", Amax);
+    int Amin = 0;
     int nLevels = 6;
     double delta = (Amax - Amin) / nLevels;
 
