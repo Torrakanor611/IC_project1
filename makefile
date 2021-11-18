@@ -11,7 +11,7 @@ MATPLOTLIB=-I/usr/include/python3.8 -lpython3.8
 # Targets needed to bring the executable up to date
 
 all:
-	@ make --no-print-directory ex2 ex3 ex3sndfile ex4 ex4video ex5 ex6 ex7 ex8 ex10
+	@ make --no-print-directory ex2 ex3 ex4 ex4video ex5 ex6 ex7 ex8 ex10
 
 ex2:
 	@ mkdir -p bin
