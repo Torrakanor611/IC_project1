@@ -21,10 +21,6 @@ ex3:
 	@ mkdir -p bin
 	@ $(CC) $(CFLAGS) ParteB/ex3.cpp -o bin/ex3
 
-ex3sndfile:
-	@ mkdir -p bin
-	@ $(CC) $(CFLAGS) ParteB/ex3sndfile.cpp -o bin/ex3sndfile $(SNDFILE)
-
 ex4:
 	@ mkdir -p bin
 	@ $(CC) $(CFLAGS) ParteB/ex4.cpp -o bin/ex4 $(OPENCV4)
